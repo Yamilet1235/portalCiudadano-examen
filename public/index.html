@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portal de atención ciudadana: registra tus reportes y solicitudes municipales." />
+  <title>CiudadConecta | Atención Ciudadana</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="top-line"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#ciudadano" id="brand-link" aria-label="CiudadConecta - Inicio">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11 12 4l9 7v9H3v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 20v-6h10v6M2 11h20M10 9h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <span><b>Ciudad<span class="brand-accent">Conecta</span></b><small>PORTAL MUNICIPAL</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button type="button" class="nav-tab active" data-page="ciudadano" aria-current="page">Portal Ciudadano</button>
+        <button type="button" class="nav-tab" data-page="admin">Panel Municipal</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="page-ciudadano" class="page">
+      <div class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-dot"></span> UNIDOS POR UNA MEJOR CIUDAD</p>
+            <h1>Tu voz construye <em>una mejor comunidad.</em></h1>
+            <p class="hero-text">Reporta una situación, comparte una fotografía y ayúdanos a mejorar los servicios de nuestro municipio.</p>
+            <a href="#formulario" class="hero-link">Crear una solicitud <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+            <div class="art-building building-left"></div><div class="art-building building-right"></div>
+            <div class="art-illustration">
+              <div class="illustration-head">✦</div><div class="illustration-lines"><i></i><i></i><i></i></div>
+              <div class="illustration-check">✓</div>
+            </div>
+            <div class="art-floating float-left">☀️</div><div class="art-floating float-right">📍</div>
+          </div>
+        </div>
+      </div>
+      <div class="container content-wrap">
+        <div class="how-it-works" aria-label="Proceso para enviar una solicitud">
+          <div class="step"><span class="step-number">01</span><span><b>Cuéntanos</b><small>Describe la situación</small></span></div>
+          <span class="step-divider"></span>
+          <div class="step"><span class="step-number">02</span><span><b>Adjunta evidencia</b><small>Sube una fotografía</small></span></div>
+          <span class="step-divider"></span>
+          <div class="step"><span class="step-number">03</span><span><b>Envía tu reporte</b><small>Recibe tu comprobante</small></span></div>
+        </div>
+
+        <section id="formulario" class="form-card" aria-labelledby="form-title">
+          <div class="section-title-row"><div><p class="kicker">ATENCIÓN CIUDADANA</p><h2 id="form-title">Nueva solicitud</h2><p>Completa los siguientes datos para registrar tu reporte.</p></div><span class="section-icon" aria-hidden="true">✎</span></div>
+          <form id="report-form" novalidate>
+            <div class="form-grid">
+              <div class="field"><label for="tipo">Tipo de solicitud <span>*</span></label><select id="tipo" name="tipo" required><option value="">Seleccionar tipo</option><option>Queja</option><option>Reporte</option></select></div>
+              <div class="field"><label for="categoria">Categoría <span>*</span></label><select id="categoria" name="categoria" required><option value="">Seleccionar categoría</option><option>Calles y carreteras</option><option>Alumbrado público</option><option>Agua potable</option><option>Basura y limpieza</option><option>Parques y espacios públicos</option><option>Otros</option></select></div>
+              <div class="field field-full"><label for="ubicacion">Ubicación del problema <span>*</span></label><input id="ubicacion" name="ubicacion" placeholder="Ej. Barrio El Centro, frente al parque" minlength="5" maxlength="160" required /></div>
+              <div class="field field-full"><label for="descripcion">Descripción de la situación <span>*</span></label><textarea id="descripcion" name="descripcion" rows="5" maxlength="1200" minlength="15" placeholder="Cuéntanos qué sucede, desde cuándo y cómo afecta a tu comunidad..." required></textarea><small class="input-hint"><span id="char-count">0</span>/1200 caracteres (mínimo 15)</small></div>
+              <div class="field field-full"><label for="nombre">Tu nombre <small>(opcional)</small></label><input id="nombre" name="nombre" placeholder="Puedes dejar este espacio en blanco" maxlength="90" /></div>
+              <div class="field field-full"><label for="fotografia">Fotografía de evidencia <span>*</span></label><label class="upload-drop" for="fotografia"><span class="upload-icon" aria-hidden="true">↑</span><strong id="upload-title">Haz clic para seleccionar una fotografía</strong><small>Formatos JPG, PNG o WEBP · Se comprimirá automáticamente</small><input type="file" id="fotografia" name="fotografia" accept="image/jpeg,image/png,image/webp" required /><img id="preview" class="preview" alt="Vista previa de la fotografía seleccionada" hidden /></label></div>
+            </div>
+            <div class="form-footer"><p><span aria-hidden="true">🔒</span> Tu solicitud se almacena de forma segura.</p><button type="submit" class="btn btn-primary" id="submit-btn">Enviar solicitud <span aria-hidden="true">→</span></button></div>
+            <p id="form-message" role="alert" class="message" hidden></p>
+          </form>
+          <div id="success-state" class="success-state" hidden>
+            <div class="big-check">✓</div><p class="kicker">SOLICITUD REGISTRADA</p><h2>¡Gracias por contribuir!</h2><p>Tu reporte se guardó correctamente en Firebase y ya está disponible para revisión municipal.</p><div class="tracking-code">Código de confirmación <strong id="tracking-code"></strong></div><button type="button" id="new-report-btn" class="btn btn-primary">Registrar otra solicitud</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="page-admin" class="page" hidden>
+      <div class="admin-hero"><div class="container"><p class="eyebrow"><span class="eyebrow-dot"></span> GESTIÓN MUNICIPAL</p><h1>Panel de <em>Administración</em></h1><p>Consulta las solicitudes ciudadanas registradas en el sistema.</p></div></div>
+      <div class="container admin-wrap">
+        <section id="login-panel" class="login-panel" aria-labelledby="login-title">
+          <div class="lock-circle">♙</div><p class="kicker">ACCESO RESTRINGIDO</p><h2 id="login-title">Ingreso del personal municipal</h2><p>Ingresa la contraseña configurada para consultar los reportes.</p>
+          <form id="login-form"><div class="field"><label for="password">Contraseña municipal</label><input id="password" type="password" autocomplete="current-password" placeholder="Escribe tu contraseña" required /></div><button type="submit" class="btn btn-primary btn-block" id="login-btn">Ingresar al panel <span aria-hidden="true">→</span></button></form>
+          <p id="login-message" class="message" role="alert" hidden></p>
+        </section>
+        <section id="dashboard" hidden aria-labelledby="dashboard-title">
+          <div class="dashboard-heading"><div><p class="kicker">RESUMEN GENERAL</p><h2 id="dashboard-title">Solicitudes ciudadanas</h2><p>Información real consultada desde Firebase.</p></div><div class="dashboard-actions"><button class="btn btn-outline" id="refresh-btn" type="button">↻ Actualizar</button><button class="btn btn-outline" id="logout-btn" type="button">Cerrar sesión</button></div></div>
+          <div class="stat-grid"><div class="stat-card"><span class="stat-icon blue">☷</span><div><small>Total de solicitudes</small><strong id="stat-total">0</strong></div></div><div class="stat-card"><span class="stat-icon golden">!</span><div><small>Quejas</small><strong id="stat-quejas">0</strong></div></div><div class="stat-card"><span class="stat-icon olive">✓</span><div><small>Reportes</small><strong id="stat-reportes">0</strong></div></div></div>
+          <div class="reports-card"><div class="reports-toolbar"><div><h3>Reportes registrados</h3><p>Selecciona un reporte para ver la fotografía y la descripción completa.</p></div><div class="filters"><input id="search-reports" type="search" aria-label="Buscar reportes" placeholder="Buscar por ubicación o texto..." /><select id="filter-type" aria-label="Filtrar por tipo"><option value="">Todos los tipos</option><option>Queja</option><option>Reporte</option></select></div></div><div id="reports-content" class="reports-content" aria-live="polite"><div class="empty-state">Inicia sesión para consultar los reportes.</div></div></div>
+          <p class="dashboard-note">Se muestran hasta los 100 reportes más recientes.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><span>© 2026 CiudadConecta · Portal Municipal</span><span>Construyendo comunidad, una solicitud a la vez.</span></div></footer>
+
+  <dialog id="report-dialog" aria-labelledby="dialog-title"><div class="dialog-head"><div><p class="kicker">DETALLE DE SOLICITUD</p><h2 id="dialog-title">Reporte</h2></div><button type="button" id="dialog-close" class="dialog-close" aria-label="Cerrar detalle">×</button></div><div id="dialog-content"></div></dialog>
+</body>
+</html>

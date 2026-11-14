@@ -1,0 +1,22 @@
+{
+  "name": "portal-municipal-quejas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Examen final de Desarrollo y Diseño Web - Series I y II",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "check": "node --check server/index.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.1",
+    "firebase-admin": "^13.2.0",
+    "helmet": "^8.0.0"
+  }
+}
